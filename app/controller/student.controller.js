@@ -139,7 +139,7 @@ exports.updateBySemester = (req, res) => {
 };
 exports.delete = (req, res) => {
     const id = req.params.id;
-    Student.findByIdAndRemove(id)
+    Student.remove({id:id})
         .then(data => {
             if (!data) {
                 res.status(404).send({
