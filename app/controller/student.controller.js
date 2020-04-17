@@ -99,8 +99,7 @@ exports.updateByCareer = (req, res) => {
     }
 
     const career = req.params.career;
-
-    Student.update({career:career}, {"$set":req.body}, { useFindAndModify: false })
+    Student.updateMany({career:career}, {"$set":req.body}, { useFindAndModify: false })
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -139,7 +138,7 @@ exports.updateBySemester = (req, res) => {
 };
 exports.delete = (req, res) => {
     const id = req.params.id;
-    Student.remove({id:id})
+    Student.removeOne({id:id})
         .then(data => {
             if (!data) {
                 res.status(404).send({
